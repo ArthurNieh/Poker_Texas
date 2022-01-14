@@ -9,7 +9,7 @@ void gaming(player p[], int N, card* general)
     while(1)
     {
         int broken = 0;
-        bool broke[N] ={0};
+        bool* broke = new bool [N] {0};
         int winner;
         for(int i=0;i<N;i++)
         {

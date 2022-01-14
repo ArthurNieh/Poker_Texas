@@ -7,7 +7,7 @@ using namespace std;
 
 player::player(){
 	
-	setmoney(initialMoney);
+	set_chips(initialMoney);
 	handcard = NULL;
 	
 }
@@ -124,4 +124,6 @@ void player::addhandcard(card thecard){
 	cardNumber++;
 	return;
 }
-
+void player::plus_chips(int chip){
+	chips += chip;
+}

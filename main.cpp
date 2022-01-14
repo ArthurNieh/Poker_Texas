@@ -18,19 +18,19 @@ int main(int argc, char** argv) {
 
     while(1)
     {
-        player p[N];
+        player* p = new player[N];
 
         setup(p, N);
 
 
-       /*card* tmp = new card[5];
+       card* tmp = new card[5];
        cout<<endl<<"input general card"<<endl;
        for(int i=0;i<5;i++){
             int t; cin>>t;
             tmp[i].color = t;
             cin>>t;
             tmp[i].number =t;
-        }*/
+        }
 
         gaming(p,N,tmp);
 

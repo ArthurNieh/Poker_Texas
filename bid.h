@@ -1,22 +1,29 @@
 #ifndef BID_H_INCLUDED
 #define BID_H_INCLUDED
-#include "compare.h"
-#include "card.h"
-#include "player.h"
-//#include <windows.h>
-using namespace std;
+#include"compare.h"
+#include"card.h"
+#include"player.h"
+#include"windows.h"
 void initial(player [],const int, int & , bool [],int);
 void after(player [],const int,int &,bool [],int,int,card*);
 bool judge(const bool [],player [],int,int);
 
-void singlegaming(player p[],int bankcounter, int N, card* general ) // ï¿½ï¿½ï¿½aï¿½ï¿½ï¿½A ï¿½Bï¿½ï¿½ï¿½aï¿½ï¿½ï¿½Ö¡Bï¿½ï¿½ï¿½aï¿½Æ¡Bï¿½ï¿½ï¿½P
+void singlegaming(player p[],int bankcounter, int N, card* general ) // ª±®aª¬ºA ¡B²ø®a´«½Ö¡Bª±®a¼Æ¡B¤½µP
 {
 
-    int moneypot = 0; // ï¿½ï¿½ï¿½ï¿½ï¿½`ï¿½ï¿½
+    for(int i=0;i<N;i++){
+        cout<<"Round "<<bankcounter + 1<<"\n\n";
+        cout<<p[i].name<<" this is your handcards\n\n";
+        p[i].showhandcards(); ///³oÃä¦³°ÝÃD
+        Sleep(2000);
+        system("cls");
+    }
+
+    int moneypot = 0; // ¤¤¥¡Á`¿ú
     int stage =0;
 
 
-    bool fold[N] = {0}; // ï¿½oï¿½ï¿½ï¿½Ö»\ï¿½Pï¿½F
+    bool fold[N]={0}; // ³o§½½Ö»\µP¤F
 
     initial(p, bankcounter, moneypot,fold,N);
 
@@ -24,7 +31,7 @@ void singlegaming(player p[],int bankcounter, int N, card* general ) // ï¿½ï¿½ï¿
     cout<<"Now we disclose three general cards\n\n";
     for(int i=0;i<3;i++)
         general[i].showcard();
-    cout<<"\n\n\n\n\n";
+    cout<<"\n\n";
 
     stage = 3;
 
@@ -39,7 +46,7 @@ void singlegaming(player p[],int bankcounter, int N, card* general ) // ï¿½ï¿½ï¿
     cout<<"Now we disclose four general cards\n\n";
     for(int i=0;i<4;i++)
         general[i].showcard();
-    cout<<"\n\n\n\n\n";
+    cout<<"\n\n";
 
     stage = 4;
 
@@ -54,7 +61,7 @@ void singlegaming(player p[],int bankcounter, int N, card* general ) // ï¿½ï¿½ï¿
     cout<<"Now we disclose five general cards\n\n\n";
     for(int i=0;i<5;i++)
         general[i].showcard();
-    cout<<"\n\n\n\n\n";
+    cout<<"\n\n";
 
     stage = 5;
 
@@ -65,7 +72,7 @@ void singlegaming(player p[],int bankcounter, int N, card* general ) // ï¿½ï¿½ï¿
 
     int max=0;
     int win;
-    int* value = new int[N];
+    int value[N];
     int draw=1;
 
     for(int i=0;i<N;i++){
@@ -100,11 +107,12 @@ void singlegaming(player p[],int bankcounter, int N, card* general ) // ï¿½ï¿½ï¿
         cout<<"this turn you "<<draw<<" get "<<moneypot / draw<<" dollars ";
     }
 
+    Sleep(1500);
     for(int i=0;i<N;i++)
         p[i].set_bitThisRound(0);
 
-    //Sleep(5000);
-    //system("cls");
+    system("pause");
+
     return ;
 
 
@@ -141,7 +149,7 @@ void after(player p[], const int bank, int &moneypot, bool fold[],int N, int sta
     int folder=0;
     int highest= 0;
 
-    for(int i=0;i<N;i++) //4 ï¿½Oï¿½Û¤vï¿½]ï¿½ï¿½
+    for(int i=0;i<N;i++) //4 ¬O¦Û¤v³]ªº
     {
         p[i].set_bitThisRound(0);
         if(fold[i]) folder++;
@@ -169,7 +177,7 @@ void after(player p[], const int bank, int &moneypot, bool fold[],int N, int sta
             }
             else{
                 cout<<p[turn].name<<"\nYou need to spend "<<highest - p[turn].get_bitThisRound()<<" dollars to call\nNow you have "<<p[turn].get_chips()<<" dollars\n";
-                cout<<"You can choose \n1.see handscard again\n2.call\n3.raise \n4.fold\n5.pass\n\n"; // ï¿½Û¤vï¿½Nï¿½Oï¿½Ì°ï¿½ï¿½ï¿½
+                cout<<"You can choose \n1.see handscard again\n2.call\n3.raise \n4.fold\n5.pass\n\n"; // ¦Û¤v´N¬O³Ì°ªªº
             }
 
 
@@ -185,8 +193,8 @@ void after(player p[], const int bank, int &moneypot, bool fold[],int N, int sta
 
                     if(k=='H'){
                         cout<<"this is your handcards\n";
-                        
-                        p[i].showhandcards();
+
+                            p[i].showhandcards();
                     }
                     else if(k=='G'){
                         for(int j=0;j<stage;j++)
@@ -197,12 +205,12 @@ void after(player p[], const int bank, int &moneypot, bool fold[],int N, int sta
                         cout<<"wrong input \n " << "You should operate again\n\n";
 
 
-                    cout<<"input what you want to \n\n";
+                    cout<<"input what you want to do again\n\n";
 
                 }
                 else if(t==2) {
                     cout<<"You choose to call\n\n";
-                     //ï¿½ï¿½`
+                     //¸òª`
                     p[turn].plus_chips(-highest + p[turn].get_bitThisRound());
                     moneypot +=  highest - p[turn].get_bitThisRound();
                     p[turn].plus_bitThisRound( highest - p[turn].get_bitThisRound() );
@@ -262,7 +270,11 @@ void after(player p[], const int bank, int &moneypot, bool fold[],int N, int sta
                         cout<<"Are you sure? You bid the most in this round !\n"<<"Y or N\n";
                         char t; cin>>t;
                         if(t=='N')
-                            continue;
+                        {
+                            cout<<"You should operate again\n\n";
+                             continue;
+                        }
+
 
                         else if(t=='Y'){}
                         else{
@@ -281,7 +293,10 @@ void after(player p[], const int bank, int &moneypot, bool fold[],int N, int sta
                 }
             }
 
+
         }
+        Sleep(1000);
+            system("cls");
 
 
 
@@ -305,22 +320,22 @@ void initial(player p[], const int bank, int &moneypot, bool fold[],int N)
 
     cout<<"player "<<p[bank].name<<". Now you are banker\n\n";
 
-    p[bank].plus_bitThisRound(5); //ï¿½jï¿½ï¿½ï¿½`
+    p[bank].plus_bitThisRound(5); //¤jª¼ª`
     p[bank].plus_chips(-5);
-    p[(bank+1) % N].plus_bitThisRound(3); //ï¿½pï¿½ï¿½ï¿½`
+    p[(bank+1) % N].plus_bitThisRound(3); //¤pª¼ª`
     p[(bank+1)%N].plus_chips(-3);
 
     moneypot += 8;
     int highest = 5;
     int pass = 0;
-    int folder = 0; // foldï¿½Î¨Ó°Oï¿½ï¿½ï¿½ï¿½ folder ï¿½Î¨Ó°Oï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    int folder = 0; // fold¥Î¨Ó°O¿ý½Ö folder ¥Î¨Ó°O¿ý¼Á¼Æ
 
     while( (pass+folder)!=  N|| folder != N-1)
     {
 
         if((pass+folder)== N || folder == N-1) break;
 
-        for(int i=0;i<N;i++) // 5ï¿½Oï¿½Û¤vï¿½ï¿½ï¿½]ï¿½ï¿½
+        for(int i=0;i<N;i++) // 5¬O¦Û¤v¥ý³]ªº
         {
             if(pass+folder== N || folder == N-1) break;
 
@@ -335,7 +350,7 @@ void initial(player p[], const int bank, int &moneypot, bool fold[],int N)
             }
             else{
                 cout<<p[turn].name<<"\nYou need to spend "<<highest - p[turn].get_bitThisRound()<<" dollars to call\nNow you have "<<p[turn].get_chips()<<" dollars\n";
-                cout<<"You can choose \n1.see handscard again\n2.call\n3.raise \n4.fold\n5.pass\n\n"; // ï¿½Û¤vï¿½Nï¿½Oï¿½Ì°ï¿½ï¿½ï¿½
+                cout<<"You can choose \n1.see handscard again\n2.call\n3.raise \n4.fold\n5.pass\n\n"; // ¦Û¤v´N¬O³Ì°ªªº
             }
 
 
@@ -345,13 +360,14 @@ void initial(player p[], const int bank, int &moneypot, bool fold[],int N)
                 if(t==1){
                     cout<<"You choose to see again\n";
                     cout<<"this is your handcards\n";
-                    p[i].showhandcards();
+
+                        p[i].showhandcards();
                     cout<<"input what you want to \n\n";
                 }
 
                 else if(t==2) {
                     cout<<"You choose to call\n\n";
-                     //ï¿½ï¿½`
+                     //¸òª`
                     p[turn].plus_chips(-highest + p[turn].get_bitThisRound());
                     moneypot +=  highest - p[turn].get_bitThisRound();
                     p[turn].plus_bitThisRound( highest - p[turn].get_bitThisRound() );
@@ -410,8 +426,11 @@ void initial(player p[], const int bank, int &moneypot, bool fold[],int N)
                     if(highest == p[i].get_bitThisRound()){
                         cout<<"Are you sure? You bid the most in this round !\n"<<"Y or N\n";
                         char t; cin>>t;
-                        if(t=='N')
-                            continue;
+                        if(t=='N'){
+                            cout<<"You should input what you want to do  again\n\n";
+                             continue;
+                        }
+
 
                         else if(t=='Y'){}
                         else{
@@ -429,8 +448,13 @@ void initial(player p[], const int bank, int &moneypot, bool fold[],int N)
 
                 }
             }
+
         }
+        Sleep(1000);
+            system("cls");
+
 
     }
 
 }
+

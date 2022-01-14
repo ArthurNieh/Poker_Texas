@@ -6,10 +6,12 @@
 using namespace std;
 
 player::player(){
-	
+
 	set_chips(initialMoney);
+
 	handcard = NULL;
-	
+	bitThisRound=0;
+	cardNumber = 0;
 }
 
 void player::setcardNumber(int num, int playernum){
@@ -22,7 +24,7 @@ void player::setcardNumber(int num, int playernum){
 	}
 }
 void player::initializer(int num){
-	
+
 	cout<<"Welcome player "<<num<<"\n";
 	cout<<"please type in your name"<<endl;
 	string yourname;
@@ -39,7 +41,7 @@ void player::cominitializer(int order){
 	comCheck = 1;
 }
 void player::sethandcard(int* cardnotprocessed, int ncards){
-	
+
 	handcard = new card[ncards];
 	for(int i=0;i<ncards;i++){
 		handcard[i].color = cardnotprocessed[i] % 4;
@@ -53,7 +55,7 @@ void player::sethandcard(int* cardnotprocessed, int ncards){
 		else{
 			handcard[i].number = cardnotprocessed[i] / 4;
 		}
-		
+
 	}
 }
 bool cardcompare(card a, card b){
@@ -86,7 +88,7 @@ void player::dealpairedcards(){
 		}
 		cout<<endl;
 	}
-	
+
 	int index = 0;
 	while(index < cardNumber - 1){
 		if(handcard[index].number == handcard[index+1].number){
@@ -105,7 +107,7 @@ void player::getridofcard(int index){
 		if(i != index){
 			temp[counttemp] = handcard[i];
 			counttemp++;
-			
+
 		}
 	}
 	delete handcard;

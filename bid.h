@@ -16,7 +16,7 @@ void singlegaming(player p[],int bankcounter, int N, card* general ) // ���
     int stage =0;
 
 
-    bool* fold = new bool[N] {0}; // �o���ֻ\�P�F
+    bool fold[N] = {0}; // �o���ֻ\�P�F
 
     initial(p, bankcounter, moneypot,fold,N);
 

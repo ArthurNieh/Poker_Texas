@@ -11,7 +11,7 @@ using namespace std;
 
 void welcome(int &n);//n:number of people
 void setup(player thePlayers[], int n);//n:number of people
-void serve(player* , int);
+void serve(player* , int, player);
 
 int main(int argc, char** argv) {
 
@@ -23,18 +23,24 @@ int main(int argc, char** argv) {
         player* p = new player[N];
 
         setup(p, N);
-
-
-       card* tmp = new card[5];
-       cout<<endl<<"input general card"<<endl;
+		
+		player general;
+		
+		for(int i=0;i<N;i++){
+			p[i].cardNumber = 2;
+		}
+		serve(p, N, general);
+		
+       
+    /*   cout<<endl<<"input general card"<<endl;
        for(int i=0;i<5;i++){
             int t; cin>>t;
             tmp[i].color = t;
             cin>>t;
             tmp[i].number =t;
-        }
+        }*/
 
-        gaming(p,N,tmp);
+        gaming(p, N, general.handcard);
 
 
 
@@ -84,8 +90,8 @@ void setup(player thePlayers[], int n){
 	}
 }
 
-void serve(player* p, int numberOfPeople){
-	bool allcards[53] = {0};
+void serve(player* p, int numberOfPeople, player general){
+	bool allcards[52] = {0};
 	srand(time(0));
 	
 	for(int i=0;i<numberOfPeople;i++){
@@ -94,12 +100,21 @@ void serve(player* p, int numberOfPeople){
 		for(int j=0;j<p[i].cardNumber;j++){
 			int take;
 			do{
-				take = rand()%53;
+				take = rand()%52;
 			}while(allcards[take] == 1);
 			mycard[j] = take;
 			allcards[take] = 1;
 		}
 		p[i].sethandcard(mycard, p[i].cardNumber);
 	}
-	
+	int* generalcards = new int [5];
+	for(int i=0;i<5;i++){
+		int take;
+		do{
+			take = rand()%52;
+		}while(allcards[take] == 1);
+		generalcards[i] = take;
+		allcards[take] = 1;
+	}
+	general.sethandcard(generalcards, 5);
 }

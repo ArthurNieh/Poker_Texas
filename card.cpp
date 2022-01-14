@@ -33,14 +33,14 @@ void card::showcard(){
 			cout<<"Joker\n";
 			break;
 	}
-		
+
 	if(color != 4){
 		cout<<" of ";
 	}
 	else{
 		return;
 	}
-		
+
 	switch(color){
 		case 0:
 			cout<<"spade"<<endl;

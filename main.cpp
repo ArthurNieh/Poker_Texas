@@ -1,5 +1,6 @@
 #include <iostream>
 #include <iomanip>
+#include <ctime> 
 #include "player.h"
 #include"gaming.h"
 

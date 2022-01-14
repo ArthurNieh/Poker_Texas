@@ -10,6 +10,7 @@ using namespace std;
 
 void welcome(int &n);//n:number of people
 void setup(player thePlayers[], int n);//n:number of people
+void serve(player* , int);
 
 int main(int argc, char** argv) {
 
@@ -82,4 +83,22 @@ void setup(player thePlayers[], int n){
 	}
 }
 
-
+void serve(player* p, int numberOfPeople){
+	bool allcards[53] = {0};
+	srand(time(0));
+	
+	for(int i=0;i<numberOfPeople;i++){
+		int* mycard = new int[p[i].cardNumber];
+		
+		for(int j=0;j<p[i].cardNumber;j++){
+			int take;
+			do{
+				take = rand()%53;
+			}while(allcards[take] == 1);
+			mycard[j] = take;
+			allcards[take] = 1;
+		}
+		p[i].sethandcard(mycard, p[i].cardNumber);
+	}
+	
+}

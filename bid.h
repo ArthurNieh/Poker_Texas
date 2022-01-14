@@ -4,6 +4,7 @@
 #include "card.h"
 #include "player.h"
 //#include <windows.h>
+using namespace std;
 void initial(player [],const int, int & , bool [],int);
 void after(player [],const int,int &,bool [],int,int,card*);
 bool judge(const bool [],player [],int,int);

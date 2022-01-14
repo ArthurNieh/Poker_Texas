@@ -5,6 +5,7 @@
 #include<cstdlib>
 #include"player.h"
 #include"card.h"
+using namespace std;
 
 int countvalue(card*);
 bool compare(card, card);
@@ -77,14 +78,14 @@ card* arrange(card* hand, card* general){
     }
 
     card* temp= combine;
-    std::sort(temp,temp+5,compare); // temp[0].number ¬O³Ì¤j ¥B 1 (A)¦bÀY
+    std::sort(temp,temp+5,compare); // temp[0].number ï¿½Oï¿½Ì¤j ï¿½B 1 (A)ï¿½bï¿½Y
 
 
-    if(fivecolors == 1){         // ®äªá©Îµ£¸Ü¶¶
+    if(fivecolors == 1){         // ï¿½ï¿½ï¿½Îµï¿½ï¿½Ü¶ï¿½
 // temp
         if((pairs==0 && temp[0].number - 4 == temp[4].number ) || (pairs==0 && temp[0].number ==1 && temp[4].number==10))
         {
-            return 5000 + temp[4].number; // ®äªá¶¶
+            return 5000 + temp[4].number; // ï¿½ï¿½á¶¶
         }
         else{
             if(temp[0].number==1)
@@ -92,10 +93,10 @@ card* arrange(card* hand, card* general){
             else
                 return 3500 + temp[0].number;
 
-        }//®äªá
+        }//ï¿½ï¿½ï¿½
     }
 
-    else if(fourkinds){ //ÅK¤ä
+    else if(fourkinds){ //ï¿½Kï¿½ï¿½
         int x;
         for(int i=0;i<14;i++)
             if(number[i]==4)
@@ -107,13 +108,13 @@ card* arrange(card* hand, card* general){
                return  4500 + x;
     }
 
-    else if(threekinds){ //±ø ¸¬Äª
+    else if(threekinds){ //ï¿½ï¿½ ï¿½ï¿½Äª
         if(pairs==0)
         {
             if(temp[0].number==1)
                 return 3000 + 14;
             else
-                return 3000 + temp[2].number; // ²Ä¤G±i¤@¿õ¬O±øªº
+                return 3000 + temp[2].number; // ï¿½Ä¤Gï¿½iï¿½@ï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½ï¿½
         }
 
         else{
@@ -132,7 +133,7 @@ card* arrange(card* hand, card* general){
             else
                 return 350 + 13*13*temp[1].number + 13* temp[3].number + temp[2].number;
         }
- // ¨â¹ï¸g¹L±Æ§Ç«á 1,3¸¹¤@©w¬O¹ï¤l¤¤ªº¤¸¯À
+ // ï¿½ï¿½ï¿½gï¿½Lï¿½Æ§Ç«ï¿½ 1,3ï¿½ï¿½ï¿½@ï¿½wï¿½Oï¿½ï¿½lï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
         else if(temp[2].number==temp[3].number){
             if(temp[0].number == 1)
@@ -187,6 +188,10 @@ card* arrange(card* hand, card* general){
         }
 
     }
+    else{
+        cout<<"error"<<endl;
+        return 0;
+    }
  }
 
  bool compare(card a, card b){
@@ -202,15 +207,15 @@ card* arrange(card* hand, card* general){
 
 
 
-// ¦pªG¬Ohigh card: ÂI¼Æ¥Ñ2~14
-// ¤@¹ï: ¹ï¥»¨­13 ¦A¥[¤W ³æ±i13=> 169ºØ ´N¤£¦Ò¼{­«½Æ¤F¥ý§ârange­q¥X¨Ó    22 2 ¬O ³Ì¤p 28  AA A¬O³Ì¤j 196  pair*13 + high card if A =>14
-// ¨â¹ï: ¥»¨­ 13 ¦A¥[¤W 13 ³æ±i 13 13*13*13 2197ºØ  350 + highpair*13*13+lowpair*13 + high card ³Ì¤p366  ³Ì¤j 2562
-// ¤T±ø: 2800+13
-// ¶¶¤l:13 3000 + head if¹H³W´NÅÜ¦¨³æ±i  ¥[ÀY¦n³B¬O¤£¥Î³B²z§À¤Ú¬OA
-// ®äªá:13 3500+ highcard ³Ì¤p2852 ³Ì¤j2864
-// ¸¬Äª:13  4000 + 13
-// ÅK¤ä:13  4500 + head
-// ®äªá¶¶:13  5000 + head
+// ï¿½pï¿½Gï¿½Ohigh card: ï¿½Iï¿½Æ¥ï¿½2~14
+// ï¿½@ï¿½ï¿½: ï¿½ï¥»ï¿½ï¿½13 ï¿½Aï¿½[ï¿½W ï¿½ï¿½i13=> 169ï¿½ï¿½ ï¿½Nï¿½ï¿½ï¿½Ò¼{ï¿½ï¿½ï¿½Æ¤Fï¿½ï¿½ï¿½ï¿½rangeï¿½qï¿½Xï¿½ï¿½    22 2 ï¿½O ï¿½Ì¤p 28  AA Aï¿½Oï¿½Ì¤j 196  pair*13 + high card if A =>14
+// ï¿½ï¿½ï¿½: ï¿½ï¿½ï¿½ï¿½ 13 ï¿½Aï¿½[ï¿½W 13 ï¿½ï¿½i 13 13*13*13 2197ï¿½ï¿½  350 + highpair*13*13+lowpair*13 + high card ï¿½Ì¤p366  ï¿½Ì¤j 2562
+// ï¿½Tï¿½ï¿½: 2800+13
+// ï¿½ï¿½ï¿½l:13 3000 + head ifï¿½Hï¿½Wï¿½Nï¿½Ü¦ï¿½ï¿½ï¿½i  ï¿½[ï¿½Yï¿½nï¿½Bï¿½Oï¿½ï¿½ï¿½Î³Bï¿½zï¿½ï¿½ï¿½Ú¬OA
+// ï¿½ï¿½ï¿½:13 3500+ highcard ï¿½Ì¤p2852 ï¿½Ì¤j2864
+// ï¿½ï¿½Äª:13  4000 + 13
+// ï¿½Kï¿½ï¿½:13  4500 + head
+// ï¿½ï¿½á¶¶:13  5000 + head
 
 
 

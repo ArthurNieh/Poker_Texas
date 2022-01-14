@@ -3,6 +3,7 @@
 #include"bid.h"
 #include"player.h"
 //#include"windows.h"
+using namespace std;
 void gaming(player p[], int N, card* general)
 {
     int bankcounter=0;

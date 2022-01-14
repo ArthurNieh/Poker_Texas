@@ -127,3 +127,12 @@ void player::addhandcard(card thecard){
 void player::plus_chips(int chip){
 	chips += chip;
 }
+void player::set_bitThisRound(int b){
+	bitThisRound = b;
+}
+int player::get_bitThisRound(){
+	return bitThisRound;
+}
+void player::plus_bitThisRound(int b){
+	bitThisRound += b;
+}

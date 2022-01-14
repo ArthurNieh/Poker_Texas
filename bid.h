@@ -3,7 +3,7 @@
 #include "compare.h"
 #include "card.h"
 #include "player.h"
-#include <windows.h>
+//#include <windows.h>
 void initial(player [],const int, int & , bool [],int);
 void after(player [],const int,int &,bool [],int,int,card*);
 bool judge(const bool [],player [],int,int);
@@ -102,8 +102,8 @@ void singlegaming(player p[],int bankcounter, int N, card* general ) // ï¿½ï¿½ï¿
     for(int i=0;i<N;i++)
         p[i].set_bitThisRound(0);
 
-    Sleep(5000);
-    system("cls");
+    //Sleep(5000);
+    //system("cls");
     return ;
 
 

@@ -2,7 +2,7 @@
 #define GAMING_H_INCLUDED
 #include"bid.h"
 #include"player.h"
-#include"windows.h"
+//#include"windows.h"
 void gaming(player p[], int N, card* general)
 {
     int bankcounter=0;
@@ -30,8 +30,8 @@ void gaming(player p[], int N, card* general)
         singlegaming(p,bankcounter,N,general);
         bankcounter++;
 
-        Sleep(5000);
-        system("cls");
+        //Sleep(5000);
+        //system("cls");
     }
 }
 

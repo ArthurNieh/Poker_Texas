@@ -77,7 +77,7 @@ card* arrange(card* hand, card* general){
     }
 
     card* temp= combine;
-    sort(temp,temp+5,compare); // temp[0].number 是最大 且 1 (A)在頭
+    std::sort(temp,temp+5,compare); // temp[0].number 是最大 且 1 (A)在頭
 
 
     if(fivecolors == 1){         // 桐花或童話順
